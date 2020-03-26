@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  BASE_URL: "http://api.openweathermap.org/data/2.5/find?q=",
+  BASE_URL: "https://api.openweathermap.org/data/2.5/find?q=",
 
   key: "c2dcf8ffb5cdc3f8977bfd2ae7ea4738",
 
