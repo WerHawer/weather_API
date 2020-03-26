@@ -1,0 +1,22 @@
+.buttonsBlock {
+  display: inline-block;
+  position: relative;
+  margin: 40px;
+  border-radius: 5px;
+}
+
+.buttonsCover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: not-allowed;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 9999;
+}
+
+.buttonsNotCover {
+  composes: buttonsCover;
+  width: 0;
+}
