@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.container p {
+  margin-bottom: 7px;
+}
+
+.oneDayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(103, 103, 245);
+  border-radius: 50%;
+  margin-bottom: 7px;
+}
+.button {
+  background: transparent;
+  border: 1px solid rgb(103, 103, 245);
+  border-radius: 3px;
+  font-size: 15px;
+  color: rgb(103, 103, 245);
+  cursor: pointer;
+  min-width: 60px;
+  min-height: 20px;
+  outline: none;
+  padding: 5px;
+}
+.button:hover {
+  color: #fff;
+  background: rgb(107, 107, 212);
+}
+
+.active {
+  composes: button;
+  color: #fff;
+  background: rgb(107, 107, 212);
+}
+
+.date {
+  font-weight: 700;
+  text-align: center;
+}
+
+.temperature {
+  text-align: center;
+  font-size: 16px;
+}

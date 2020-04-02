@@ -9,7 +9,7 @@ const WeatherInfo = ({ data }) => (
 
         <li className={css.element}>
           <span className={css.elementName}>Temperature</span>
-          <span>{data.main.temp} °С</span>
+          <span>{Math.floor(data.main.temp)} °С</span>
         </li>
 
         <li className={css.element}>

@@ -1,0 +1,33 @@
+.container {
+  padding-top: 8px;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  min-width: 250px;
+  border: 1px solid rgb(103, 103, 245);
+  border-radius: 6px;
+  color: #fff;
+  background: rgb(107, 107, 212);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.city {
+  text-align: center;
+}
+
+.weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container img {
+  width: 70px;
+  height: 70px;
+}
+
+.temperature {
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+}
