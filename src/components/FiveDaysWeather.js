@@ -3,6 +3,8 @@ import css from "./FiveDaysWeather.module.css";
 import mS from "../data/monthes";
 import getTime from "../utils/getTime";
 import shortid from "shortid";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import opacityTransition from "../transitions/opacity.module.css";
 
 const grupeByDate = arrData => {
   if (!arrData) return;
@@ -84,7 +86,11 @@ export default class FiveDaysWeather extends Component {
   };
 
   handleClickHide = () => {
-    this.setState({ detailedDayInfo: "", choosen: "" });
+    this.setState({ choosen: "" });
+
+    setTimeout(() => {
+      this.setState({ detailedDayInfo: "" });
+    }, 500);
   };
 
   fiveDaysWeatherForecastBuilder = data => {
@@ -95,62 +101,83 @@ export default class FiveDaysWeather extends Component {
 
   render() {
     const { detailedDayInfo, choosen, oneDayFiltered } = this.state;
+
     return (
       <>
-        <div className={css.container}>
-          {oneDayFiltered &&
-            oneDayFiltered.map(forecast => (
-              <div key={forecast.id} className={css.oneDayContainer}>
-                <p className={css.date}>{` ${forecast.D} ${mS[forecast.M]}`}</p>
-                <div className={css.imgContainer}>
-                  <img
-                    src={`http://openweathermap.org/img/wn/${forecast.icon}.png`}
-                    alt="weather"
-                  />
-                </div>
-
-                <p>{`${forecast.minT} - ${forecast.maxT} °C`}</p>
-
-                <button
-                  className={choosen === forecast.id ? css.active : css.button}
-                  type="button"
-                  id={forecast.id}
-                  onClick={e => this.handleClickDetails(e, forecast)}
-                >
-                  Day details
-                </button>
-              </div>
-            ))}
-        </div>
-        {detailedDayInfo && (
-          <div className={css.details}>
-            <div className={css.container}>
-              {detailedDayInfo.map(el => (
-                <div key={el.dt}>
-                  <p className={css.date}>{getTime(el.dt_txt)}</p>
-                  <div className={css.weather}>
-                    <div className={css.imgContainer}>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${el.weather[0].icon}.png`}
-                        alt="weather"
-                      />
-                    </div>
-                    <p className={css.temperature}>{`${Math.floor(
-                      el.main.temp
-                    )} °C`}</p>
+        <CSSTransition
+          in={!!oneDayFiltered}
+          timeout={500}
+          classNames={opacityTransition}
+          unmountOnExit
+        >
+          <ul className={css.container}>
+            {oneDayFiltered &&
+              oneDayFiltered.map(forecast => (
+                <li key={forecast.id} className={css.oneDayContainer}>
+                  <p className={css.date}>{` ${forecast.D} ${
+                    mS[forecast.M]
+                  }`}</p>
+                  <div className={css.imgContainer}>
+                    <img
+                      src={`http://openweathermap.org/img/wn/${forecast.icon}.png`}
+                      alt="weather"
+                    />
                   </div>
-                </div>
+
+                  <p>{`${forecast.minT} - ${forecast.maxT} °C`}</p>
+
+                  <button
+                    className={
+                      choosen === forecast.id ? css.active : css.button
+                    }
+                    type="button"
+                    id={forecast.id}
+                    onClick={e => this.handleClickDetails(e, forecast)}
+                  >
+                    Day details
+                  </button>
+                </li>
               ))}
-            </div>
-            <button
-              type="button"
-              onClick={this.handleClickHide}
-              className={css.button}
-            >
-              Hide
-            </button>
+          </ul>
+        </CSSTransition>
+        <CSSTransition
+          in={!!choosen}
+          timeout={500}
+          unmountOnExit
+          classNames={opacityTransition}
+        >
+          <div className={css.details}>
+            {detailedDayInfo && (
+              <>
+                <div className={css.container}>
+                  {detailedDayInfo.map(el => (
+                    <div key={el.dt_txt}>
+                      <p className={css.date}>{getTime(el.dt_txt)}</p>
+                      <div className={css.weather}>
+                        <div className={css.imgContainer}>
+                          <img
+                            src={`http://openweathermap.org/img/wn/${el.weather[0].icon}.png`}
+                            alt="weather"
+                          />
+                        </div>
+                        <p className={css.temperature}>{`${Math.floor(
+                          el.main.temp
+                        )} °C`}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={this.handleClickHide}
+                  className={css.button}
+                >
+                  Hide
+                </button>
+              </>
+            )}
           </div>
-        )}
+        </CSSTransition>
       </>
     );
   }
