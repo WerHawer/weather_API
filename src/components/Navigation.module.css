@@ -3,6 +3,7 @@
   position: relative;
   margin: 40px;
   border-radius: 5px;
+  height: 40px;
 }
 
 .buttonsCover {
@@ -19,4 +20,10 @@
 .buttonsNotCover {
   composes: buttonsCover;
   width: 0;
+}
+
+@media (max-width: 590px) {
+  .buttonsBlock {
+    margin: 40px 0 3px 0;
+  }
 }

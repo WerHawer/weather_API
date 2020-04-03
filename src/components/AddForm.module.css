@@ -1,0 +1,16 @@
+.form {
+  position: absolute;
+  top: 50px;
+  left: 230px;
+}
+
+.input {
+  border: 1px solid rgb(103, 103, 245);
+  border-radius: 3px;
+  font-size: 15px;
+  color: rgb(103, 103, 245);
+  cursor: pointer;
+  min-width: 80px;
+  min-height: 40px;
+  padding-left: 15px;
+}

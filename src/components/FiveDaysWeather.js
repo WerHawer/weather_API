@@ -3,7 +3,7 @@ import css from "./FiveDaysWeather.module.css";
 import mS from "../data/monthes";
 import getTime from "../utils/getTime";
 import shortid from "shortid";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 import opacityTransition from "../transitions/opacity.module.css";
 
 const grupeByDate = arrData => {
@@ -38,9 +38,12 @@ const grupeByDate = arrData => {
 
 const oneDayFilter = arr => {
   if (!arr) return;
+  const today = new Date(Date.now()).getDate();
 
   let filterByOneDate = [];
   arr.reduce((acc, el) => {
+    if (acc.D === today) return (acc = el);
+
     if (acc.D === el.D) {
       const minT = acc.minT < el.minT ? acc.minT : el.minT;
       const maxT = acc.maxT > el.maxT ? acc.maxT : el.maxT;
@@ -151,7 +154,7 @@ export default class FiveDaysWeather extends Component {
               <>
                 <div className={css.container}>
                   {detailedDayInfo.map(el => (
-                    <div key={el.dt_txt}>
+                    <div key={el.dt_txt} className={css.oneDetailed}>
                       <p className={css.date}>{getTime(el.dt_txt)}</p>
                       <div className={css.weather}>
                         <div className={css.imgContainer}>
@@ -170,7 +173,7 @@ export default class FiveDaysWeather extends Component {
                 <button
                   type="button"
                   onClick={this.handleClickHide}
-                  className={css.button}
+                  className={css.buttonHide}
                 >
                   Hide
                 </button>

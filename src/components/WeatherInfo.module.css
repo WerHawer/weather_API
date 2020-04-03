@@ -23,3 +23,22 @@
   font-weight: 700;
   background-color: rgb(243, 243, 243);
 }
+
+@media (max-width: 590px) {
+  .element {
+    padding-left: 30px;
+  }
+  .elementName {
+    width: 80%;
+  }
+}
+
+@media (max-width: 440px) {
+  .element {
+    padding-left: 10px;
+  }
+
+  .elementName {
+    width: 73%;
+  }
+}

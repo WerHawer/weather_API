@@ -1,12 +1,14 @@
 .button {
   background: transparent;
   border: 1px solid rgb(103, 103, 245);
+  border-right: none;
   font-size: 15px;
   color: rgb(103, 103, 245);
   cursor: pointer;
   min-width: 80px;
   min-height: 40px;
   outline: none;
+  position: relative;
 }
 
 .active {
@@ -16,13 +18,12 @@
 }
 
 .button:nth-child(2) {
-  border-right: none;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
 
 .button:last-child {
-  border-left: none;
+  border-right: 1px solid rgb(103, 103, 245);
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
@@ -59,4 +60,39 @@
 
 .active .ldsDualRing:after {
   border-color: #fff transparent #fff transparent;
+}
+
+.del {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 1px;
+  right: 1px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+.del img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+}
+.del_none {
+  display: none;
+}
+
+.del:hover {
+  background-color: red;
+}
+
+/* MEDIA */
+
+@media (max-width: 590px) {
+  .button {
+    font-size: 14px;
+    min-width: 50px;
+    min-height: 30px;
+    padding: 5px;
+  }
 }

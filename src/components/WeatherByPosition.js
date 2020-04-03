@@ -14,7 +14,7 @@ const WeatherByPosition = ({ data }) => (
       {data && (
         <>
           <h2 className={css.city}>{data.name}</h2>
-          <p className={css.city}>(weather by your position)</p>
+          <p className={css.byPosition}>(weather by your position)</p>
           <div className={css.weather}>
             <img
               src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`}
@@ -25,7 +25,7 @@ const WeatherByPosition = ({ data }) => (
                 {" "}
                 {Math.floor(data.main.temp)} °C
               </p>
-              <p>{data.weather[0].description}</p>
+              <p className={css.temperature}>{data.weather[0].description}</p>
             </div>
           </div>
         </>
